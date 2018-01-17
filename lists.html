@@ -11,8 +11,8 @@
 
             </li>
         </ul>
-        <input id="input" type="" name="">
-        <button id="button">Add Name</button><!--append value to the names array-->
+        <input id="input" type="" v-model="newName">
+        <button @click="addName">Add Name</button><!--append value to the names array-->
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
     <script>
@@ -21,16 +21,23 @@
 
             el: "#app",
             data: {
+                newName : '',
                 names : ['Joe','Terry','Mark','May']
             },
-            mounted() {
-                //fired by vue when the instance has been mounted
-                document.querySelector('#button').addEventListener('click', () => {
-                    let name = document.querySelector('#input');
-                    vm.names.push(name.value);
-                    name.value = '';
-                });
+            methods: {
+                addName() {
+                    this.names.push(this.newName);
+                    this.newName = '';//clear input
+                }
             }
+            //mounted() {
+                //fired by vue when the instance has been mounted
+                //document.querySelector('#button').addEventListener('click', () => {
+                //    let name = document.querySelector('#input');
+                //    vm.names.push(name.value);
+                //    name.value = '';
+                //});
+            //}
 
         });
     </script>
