@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Binding</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="name in names" v-text="name">
+
+            </li>
+        </ul>
+        <input id="input" type="" name="">
+        <button id="button">Add Name</button><!--append value to the names array-->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    <script>
+        //filter through array and display each item on the page
+        var vm = new Vue({
+
+            el: "#app",
+            data: {
+                names : ['Joe','Terry','Mark','May']
+            },
+            mounted() {
+                //fired by vue when the instance has been mounted
+                document.querySelector('#button').addEventListener('click', () => {
+                    let name = document.querySelector('#input');
+                    vm.names.push(name.value);
+                    name.value = '';
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
