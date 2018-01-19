@@ -1,4 +1,4 @@
-Vue.component('task-list', {
+Vue.component('task', {
     template: '<li><slot></slot></li>'
 });//global component
 
