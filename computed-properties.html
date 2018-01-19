@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Computed Properties</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="app">
+        <!--<h1>{{ reversedMessage }}</h1>-->
+        <h1>All Tasks</h1>
+        <ul>
+            <li v-for="task in tasks">
+                <input type="checkbox" v-model="task.completed">
+                {{ task.description }}
+            </li>
+        </ul>
+        <h1>Complete Tasks</h1>
+        <ul>
+            <li v-for="task in completeTasks" v-text="task.description"></li>
+        </ul>
+        <h1>Incomplete Tasks</h1>
+        <ul>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                tasks: [
+                    { description: 'Go to the store', completed : true},
+                    { description: 'Deposit cheque', completed : false},
+                    { description: 'Finish laundry', completed : false},
+                    { description: 'Cook dinner', completed : false},
+                    { description: 'Clean room', completed : true},
+                    { description: 'Clear inbox', completed : true}
+                ]
+            },
+            computed: {
+                completeTasks() {
+                    return this.tasks.filter(task => task.completed);
+                },
+                incompleteTasks() {
+                    return this.tasks.filter(task => ! task.completed);
+                }
+                //reversedMessage() {
+                //    return this.message.split('').reverse().join('');
+                //}
+            }
+        });
+    </script>
+</body>
+</html>
