@@ -20,9 +20,6 @@ Vue.component('modal', {
     `
 });
 
-Vue.component('', {
-});
-
 var vm = new Vue({
 
     el: "#app"

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Single Use Components</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <style>
+        body{
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <!--view specific components-->
+            <progress-view inline-template>
+                <div><!--root element-->
+                    <h1>You progress through this course is {{ completionRate }}%</h1>
+
+                    <p><button @click="completionRate += 10">Update Completion Rate</button></p>
+                </div>
+            </progress-view>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    <script src="single-use-components.js"></script>
+</body>
+</html>
