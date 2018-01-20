@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Component Communication</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <style>
+        body{
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <coupon @applied="onCouponApplied"></coupon><!--child and parent communication-->
+        <h1 v-if="couponApplied">You applied a coupon!</h1>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    <script src="component-communication.js"></script>
+</body>
+</html>
