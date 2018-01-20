@@ -1,10 +1,4 @@
 Vue.component('modal', {
-    props: ['title', 'body'],
-    data(){
-        return {
-            isVisible: true
-        };
-    },
     template : `
         <div class="modal is-active">
           <div class="modal-background"></div>
