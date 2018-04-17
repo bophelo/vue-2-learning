@@ -10,12 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('projects',
+    'ProjectsController@store'
+);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('skills', function () {
+Route::get('/skills', function () {
     //automatically converted to a json response
     return ['Laravel', 'Vue', 'PHP', 'Javascript','Tooling'];
 });
+
+Route::get('projects/create',
+    'ProjectsController@create'
+);
+
