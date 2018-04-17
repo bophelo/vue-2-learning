@@ -49,10 +49,16 @@ class Form {
     data() {
         //data should be name and description needs to be dynamic, cant fectch all the properties, there's errors, originalData
         //clone the object
-        let data = Object.assign({}, this);
+        //let data = Object.assign({}, this);
         //omit
-        delete data.originalData;
-        delete data.errors;
+        //delete data.originalData;
+        //delete data.errors;
+        let data = {};
+        for (let property in this.originalData) {
+            //filtering through name and description
+            //for each one data.name = this.name;
+            data[property] = this[property];
+        }
         //payload
         return data;
     }
@@ -62,6 +68,24 @@ class Form {
         for (let field in originalData) {
             this[field] = '';
         }
+        //ensure that the errors are empty
+        this.errors.clear();
+    }
+
+    post(url) {
+        return this.submit('post', url);
+    }
+
+    put(url) {
+        return this.submit('put', url);
+    }
+
+    patch(url) {
+        return this.submit('patch', url);
+    }
+
+    delete(url) {
+        return this.submit('delete', url);
     }
 
     submit(requestType, url) {
@@ -69,20 +93,29 @@ class Form {
         //changes because of the class, need to record incoming error messages
         //make it dynamic e.g PATCH request
         //when these methods get called the this context get rebouned
+        //return our own promise
+        //resolve a-okay, fail reject
+        //axios call returns a promise, but in order to do it in our view instance we need to wrap it in another one
+        return new Promise((resolve, reject) => { //form.submit('post','some-endpoint')
             axios[requestType](url, this.data())
-                    .then(this.onSuccess.bind(this))
-                        .catch(this.onFail.bind(this))
+                .then(response => {
+                    this.onSuccess(response.data);
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    this.onFail(error.response.data);//*fix this
+                    reject(error.response.data);
+                });
+        });
     }
 
-    onSuccess(response) {
-        alert(response.data.message);
-        //ensure that the errors are empty
-        this.errors.clear();
+    onSuccess(data) {
+        alert(data.message);
         this.reset();
     }
 
-    onFail(error) {
-        this.errors.record(error.response.data);//data associated with the response
+    onFail(errors) {
+        this.errors.record(errors);//data associated with the response
     }
 }
 var vm = new Vue({
@@ -92,7 +125,7 @@ var vm = new Vue({
     data: {
         //skills: []
         //declare your v-models here
-        //name: '', form class takes responsibilit for these two fields
+        //name: '', form class takes responsibility for these two fields
         //description: '',
         form: new Form({ //form.errors, since form class is now responsible..not defined on the instance
             //pass through reactive data
@@ -104,7 +137,12 @@ var vm = new Vue({
 
     methods: {
         onSubmit() {
-            this.form.submit('post','/projects');
+            //respond after updating the form, flash message etc...promises
+            this.form.post('/projects')
+                //.then(data => console.log(data))
+                //.catch(error => console.log(error));//keeps throwing error...wtf?
+                .then(data => alert(data.JSON))
+                //.catch(error => alert(error))
         }
 
         /*onSuccess(response) {
