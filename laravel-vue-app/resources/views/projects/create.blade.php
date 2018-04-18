@@ -17,6 +17,7 @@
     </head>
     <body>
         <div id="app" class="container">
+            <example></example>
             {{--@include('projects.list')--}}
             <!--when you type clear form.errors, target input name-->
             <form method="POST" action="/projects" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)"><!--listening for when the form is submitted, prevent default option-->
@@ -59,8 +60,7 @@
             </form>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/js/vendor.js"></script>
         <script src="/js/app.js"></script>
     </body>
 </html>
