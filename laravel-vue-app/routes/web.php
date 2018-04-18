@@ -22,6 +22,10 @@ Route::get('/shared', function () {
     return view('shared');
 });
 
+Route::get('/inputs', function () {
+    return view('inputs');
+});
+
 Route::get('/skills', function () {
     //automatically converted to a json response
     return ['Laravel', 'Vue', 'PHP', 'Javascript','Tooling'];
