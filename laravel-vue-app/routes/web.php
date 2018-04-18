@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/shared', function () {
+    return view('shared');
+});
+
 Route::get('/skills', function () {
     //automatically converted to a json response
     return ['Laravel', 'Vue', 'PHP', 'Javascript','Tooling'];
