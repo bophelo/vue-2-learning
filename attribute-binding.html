@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attribute Binding</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        .color-red {
+            color: red;
+        }
+        .color-blue {
+            color: blue;
+        }
+        .is-loading {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 :class="className">Hello World</h1>
+        <!--conditionally set buttons-->
+        <button :title="title">Hover over me.</button>
+        <button :class="{'is-loading': isLoading}" @click="toggleClass()">Click me.</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    <script>
+        var vm = new Vue({
+
+            el: "#app",
+            data: {
+                className : 'color-blue',
+                title: 'Now the title is being set through Javascript',
+                isLoading : false
+            },
+            methods: {
+                toggleClass() {
+                    this.isLoading = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

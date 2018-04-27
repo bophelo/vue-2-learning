@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modal Component</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <style>
+        body{
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <!--custom event listener-->
+        <modal v-if="showModal" @close="showModal = false">
+            <p>Insert any text here.</p>
+        </modal><!--bind its display to-->
+        <button @click="showModal = true">Show Modal</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    <script src="modal-component.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Named Slots</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <style>
+        body{
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <modal>
+            <template slot="header"><!--when you want no wrapping element around content-->
+                My Title.
+            </template>
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+            <div slot="footer">
+                <button class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
+            </div>
+        </modal>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    <script src="named-slots.js"></script>
+</body>
+</html>
